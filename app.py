@@ -44,7 +44,8 @@ def predict():
         input_final = np.concatenate([input_scaled, [[extra_encoded]]], axis=1)
 
         result = model.predict(input_final)[0]
-        result = max(0, round(result, 2))
+        result = min(100, max(0, round(result, 2)))
+
 
         return render_template('result.html', prediction=result, is_error=False)
 
